@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline API Documentation | Travai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --gold: #d4a853;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --success: #22c55e;
+            --pending: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 320px;
+            background-color: #020617;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin: 25px 0 10px 10px;
+        }
+
+        .endpoint-link {
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+        }
+
+        .endpoint-link:hover { background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.2); }
+        .endpoint-link.active { background: var(--primary); color: white; border-color: var(--primary-hover); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); }
+
+        .method-badge {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 6px;
+            border-radius: 4px;
+            min-width: 45px;
+            text-align: center;
+        }
+        .method-GET { background: #0ea5e9; color: white; }
+        .method-POST { background: #10b981; color: white; }
+        .method-PUT { background: #f59e0b; color: white; }
+        .method-DELETE { background: #ef4444; color: white; }
+
+        /* Main Content */
+        #mainContent {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 { font-size: 2rem; font-weight: 800; margin-bottom: 25px; letter-spacing: -1px; }
+        h3 { font-size: 1.1rem; color: var(--gold); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+
+        .url-box {
+            background: #020617;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        pre {
+            background: #020617;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #a5b4fc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: rgba(255,255,255,0.05); font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); }
+        
+        .hl-req { color: #10b981; }
+        .hl-res { color: #f59e0b; }
+
+        .welcome-screen {
+            text-align: center;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div style="padding: 10px; text-align: center; margin-bottom: 20px;">
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">TRAVAI <span style="color:white">AIRLINE</span></h1>
+            <p style="font-size: 0.7rem; color: var(--text-muted); opacity: 0.6; margin-top: 5px;">AIRLINE API ENGINE v2.0</p>
+        </div>
+        <div id="endpoints-list"></div>
+    </div>
+
+    <div id="mainContent">
+        <div class="welcome-screen">
+            <i class="fas fa-plane-departure" style="font-size: 5rem; color: var(--primary); margin-bottom: 30px;"></i>
+            <h1 style="font-size: 3rem;">Airport Operations <span style="color: var(--gold);">API Docs</span></h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 20px auto;">
+                Welcome to the official Airline module documentation. This reference provides every endpoint needed for searches, bookings, wallet transactions, and admin controls.
+            </p>
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+                <div style="padding: 15px 25px; background: rgba(99, 102, 241, 0.1); border-radius: 15px; border: 1px solid var(--primary);">
+                    <div style="font-size: 1.5rem; font-weight: 800;">45+</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Active Endpoints</div>
+                </div>
+                <div style="padding: 15px 25px; background: rgba(212, 168, 83, 0.1); border-radius: 15px; border: 1px solid var(--gold);">
+                    <div style="font-size: 1.5rem; font-weight: 800;">STABLE</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Environment</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiData = [
+            {
+                category: "1. Authentication",
+                endpoints: [
+                    {
+                        title: "Login", method: "POST", url: "/api/Users/login",
+                        location: "airline/index.html (Login Modal)",
+                        desc: "Authenticates user for Airline operations. Returns JWT token and role.",
+                        requestParams: null,
+                        requestBody: "{\n  \"email\": \"user@example.com\",\n  \"password\": \"string\"\n}",
+                        response: "{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"token\": \"eyJ...\",\n    \"role\": \"User\"\n  }\n}"
+                    },
+                    {
+                        title: "Register", method: "POST", url: "/api/Users/register",
+                        location: "airline/index.html (Register Modal)",
+                        desc: "Creates a new passenger account on the Travai platform.",
+                        requestParams: null,
+                        requestBody: "{\n  \"name\": \"string\",\n  \"email\": \"user@example.com\",\n  \"password\": \"string\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "2. Airlines & Airports",
+                endpoints: [
+                    {
+                        title: "List All Airlines", method: "GET", url: "/api/airline/airlines",
+                        location: "airline/index.html (Filter Sidebar)",
+                        desc: "Fetch all registered airlines for filtering purposes.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"id\": 1, \"name\": \"EgyptAir\", \"logoUrl\": \"url\" }\n  ]\n}"
+                    },
+                    {
+                        title: "List All Airports", method: "GET", url: "/api/airline/airports",
+                        location: "Airport Selection Modals",
+                        desc: "Retrieves all airports globally for flight routing.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"code\": \"CAI\", \"name\": \"Cairo Intl\", \"city\": \"Cairo\" }\n  ]\n}"
+                    },
+                    {
+                        title: "Search Airports", method: "GET", url: "/api/airline/airports/search",
+                        location: "Autocomplete Search Inputs",
+                        desc: "Autocomplete search for airports by code or city name.",
+                        requestParams: [{ name: "q", type: "Query", desc: "Search term e.g. 'Lon'" }],
+                        requestBody: null,
+                        response: "{\n  \"data\": [{ \"code\": \"LHR\", \"name\": \"Heathrow\" }]\n}"
+                    }
+                ]
+            },
+            {
+                category: "3. Flights Search",
+                endpoints: [
+                    {
+                        title: "Search Flights", method: "POST", url: "/api/airline/flights/search",
+                        location: "airline/index.html (Main Flight Grid)",
+                        desc: "The core search engine for flights. Find direct/indirect trips by cities and date.",
+                        requestParams: null,
+                        requestBody: "{\n  \"from\": \"CAI\",\n  \"to\": \"DXB\",\n  \"date\": \"YYYY-MM-DD\",\n  \"maxStops\": 1,\n  \"airlineIds\": [1,2]\n}",
+                        response: "{\n  \"data\": {\n    \"flights\": [\n      {\n        \"id\": 101,\n        \"airlineName\": \"EgyptAir\",\n        \"price\": 350.50,\n        \"departureTime\": \"Date\"\n      }\n    ]\n  }\n}"
+                    },
+                    {
+                        title: "Get Flight Details", method: "GET", url: "/api/airline/flights/{id}",
+                        location: "airline/index.html (Info Modal)",
+                        desc: "Retrieves full data for a specific flight, including baggage info and aircraft type.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Flight ID" }],
+                        requestBody: null,
+                        response: "{\n  \"data\": {\n     \"id\": 101,\n     \"fromCity\": \"Cairo\",\n     \"toCity\": \"Dubai\",\n     \"availableSeats\": 45\n  }\n}"
+                    }
+                ]
+            },
+            {
+                category: "4. Bookings & Tickets",
+                endpoints: [
+                    {
+                        title: "Book a Flight", method: "POST", url: "/api/airline/bookings",
+                        location: "airline/index.html (Booking Modal)",
+                        desc: "Creates a new booking. Deducts funds from wallet automatically upon confirmation.",
+                        requestParams: null,
+                        requestBody: "{\n  \"flightId\": 101,\n  \"numberOfSeats\": 2,\n  \"companionIds\": [5, 9]\n}",
+                        response: "{\n  \"data\": { \"bookingId\": 5001, \"totalPrice\": 700.00 }\n}"
+                    },
+                    {
+                        title: "My Bookings", method: "GET", url: "/api/airline/bookings/my-bookings",
+                        location: "airline/index.html (Bookings View)",
+                        desc: "Lists all flights booked by the current logged-in user.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"id\": 5001, \"status\": \"Confirmed\", \"totalPrice\": 700 }\n  ]\n}"
+                    },
+                    {
+                        title: "Get E-Ticket", method: "GET", url: "/api/airline/bookings/{id}/eticket",
+                        location: "airline/index.html (E-Ticket View)",
+                        desc: "Generates boarding pass data including PNR and QR Codes for each passenger.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Booking ID" }],
+                        requestBody: null,
+                        response: "{\n  \"data\": {\n    \"pnr\": \"TRV-993X\",\n    \"passengers\": [{ \"name\": \"John\", \"qrCode\": \"base64\" }]\n  }\n}"
+                    },
+                    {
+                        title: "Cancel Booking", method: "DELETE", url: "/api/airline/bookings/{id}",
+                        location: "airline/index.html (Booking Details)",
+                        desc: "Cancels a booking. Refund policy applies to wallet balance.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Booking ID" }],
+                        requestBody: null,
+                        response: "{\n  \"message\": \"Booking cancelled successfully\"\n}"
+                    }
+                ]
+            },
+            {
+                category: "5. Passengers & Companions",
+                endpoints: [
+                    {
+                        title: "Get My Companions", method: "GET", url: "/api/airline/companions",
+                        location: "airline/index.html (Companions View)",
+                        desc: "Get listed family/friends to quickly book flights for them.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"id\": 5, \"firstName\": \"Jane\", \"ageType\": \"Adult\" }\n  ]\n}"
+                    },
+                    {
+                        title: "Add Companion", method: "POST", url: "/api/airline/companions",
+                        location: "airline/index.html (Add Companion Form)",
+                        desc: "Adds a new travel companion to the user's profile.",
+                        requestParams: null,
+                        requestBody: "{\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"ageType\": \"Adult|Child|Infant\",\n  \"passportNumber\": \"string\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    },
+                    {
+                        title: "Delete Companion", method: "DELETE", url: "/api/airline/companions/{id}",
+                        location: "airline/index.html (Companions List)",
+                        desc: "Removes a companion from the travel list.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Companion ID" }],
+                        requestBody: null,
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "6. Reviews",
+                endpoints: [
+                    {
+                        title: "Add Review", method: "POST", url: "/api/airline/reviews",
+                        location: "airline/index.html (Add Review Modal)",
+                        desc: "Passengers can rate their experience (1-5 stars) after flight completion.",
+                        requestParams: null,
+                        requestBody: "{\n  \"flightId\": 101,\n  \"rating\": 5,\n  \"comment\": \"Great flight!\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    },
+                    {
+                        title: "Get Flight Reviews", method: "GET", url: "/api/airline/reviews/flight/{flightId}",
+                        location: "airline/index.html (Flight Info Modal)",
+                        desc: "Fetch all passenger comments for a specific flight route.",
+                        requestParams: [{ name: "flightId", type: "Path", desc: "Flight ID" }],
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"userName\": \"John\", \"rating\": 5, \"comment\": \"...\" }\n  ]\n}"
+                    }
+                ]
+            },
+            {
+                category: "7. Wallet & Financials",
+                endpoints: [
+                    {
+                        title: "Get Balance", method: "GET", url: "/api/airline/wallet/balance",
+                        location: "airline/index.html (NavBar / Dashboard)",
+                        desc: "Returns the real-time balance available for airline bookings.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": { \"balance\": 1250.75 }\n}"
+                    },
+                    {
+                        title: "Get Transactions", method: "GET", url: "/api/airline/wallet/transactions",
+                        location: "airline/index.html (Profile Tab)",
+                        desc: "History of all top-ups and flight payments.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"amount\": -350, \"type\": \"Payment\", \"description\": \"Flight to Dubai\" }\n  ]\n}"
+                    },
+                    {
+                        title: "Add Funds", method: "POST", url: "/api/airline/wallet/add-funds",
+                        location: "airline/index.html (Top-Up Modal)",
+                        desc: "Increases wallet balance via simulated credit card payment.",
+                        requestParams: null,
+                        requestBody: "{\n  \"amount\": 500,\n  \"description\": \"Credit Card Top-up\"\n}",
+                        response: "{\n  \"data\": { \"balance\": 1750.75 }\n}"
+                    }
+                ]
+            },
+            {
+                category: "8. Chat & Support",
+                endpoints: [
+                    {
+                        title: "Get Chat History", method: "GET", url: "/api/airline/chat/{bookingId}",
+                        location: "airline/index.html (Support Modal)",
+                        desc: "Messaging history between passenger and airline support for a specific booking.",
+                        requestParams: [{ name: "bookingId", type: "Path", desc: "Booking ID" }],
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"sender\": \"User\", \"message\": \"Hello\", \"timestamp\": \"...\" }\n  ]\n}"
+                    },
+                    {
+                        title: "Send Message", method: "POST", url: "/api/airline/chat/send",
+                        location: "airline/index.html (Chat Interface)",
+                        desc: "Sends a live message to the airline support agent.",
+                        requestParams: null,
+                        requestBody: "{\n  \"bookingId\": 5001,\n  \"message\": \"Can I change my seat?\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "9. Admin: User Control",
+                endpoints: [
+                    {
+                        title: "List All Users", method: "GET", url: "/api/airline/admin/users",
+                        location: "airline/index.html (Admin Tab -> Users)",
+                        desc: "Admin view of all platform users, their roles, and current statuses.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": [\n    { \"id\": 1, \"name\": \"Admin\", \"role\": \"Admin\", \"status\": \"Active\" }\n  ]\n}"
+                    },
+                    {
+                        title: "Update User Status", method: "PUT", url: "/api/airline/admin/users/{id}/status",
+                        location: "airline/index.html (User Management Table)",
+                        desc: "Bans, activates, or suspends a specific user account.",
+                        requestParams: [{ name: "id", type: "Path", desc: "User ID" }],
+                        requestBody: "{\n  \"status\": \"Banned | Active | Suspended\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    },
+                    {
+                        title: "Update User Role", method: "PUT", url: "/api/airline/admin/users/{id}/role",
+                        location: "airline/index.html (User Management Table)",
+                        desc: "Promotes or demotes a user's access level (e.g. to Airline admin).",
+                        requestParams: [{ name: "id", type: "Path", desc: "User ID" }],
+                        requestBody: "{\n  \"role\": \"Admin | User | Airline\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "10. Admin: Operations",
+                endpoints: [
+                    {
+                        title: "Global Stats", method: "GET", url: "/api/airline/dashboard/stats",
+                        location: "airline/index.html (Admin Tab -> Dashboard)",
+                        desc: "High-level overview of total revenue, flight count, and booking statuses.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "{\n  \"data\": { \"totalRevenue\": 150000, \"activeFlights\": 42, \"pendingBookings\": 15 }\n}"
+                    },
+                    {
+                        title: "Update Flight", method: "PUT", url: "/api/airline/flights/{id}",
+                        location: "airline/index.html (Flight Management Table)",
+                        desc: "Update flight schedule, price, or status (Delayed/On-Time).",
+                        requestParams: [{ name: "id", type: "Path", desc: "Flight ID" }],
+                        requestBody: "{\n  \"price\": 400,\n  \"status\": \"Delayed\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    },
+                    {
+                        title: "Cancel/Delete Flight", method: "DELETE", url: "/api/airline/flights/{id}",
+                        location: "airline/index.html (Flight Management Table)",
+                        desc: "Permanently removes a flight from the schedule.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Flight ID" }],
+                        requestBody: null,
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            }
+        ];
+
+        // --- Render Sidebar ---
+        const sidebar = document.getElementById('endpoints-list');
+        let html = '';
+        
+        apiData.forEach((cat, catIdx) => {
+            html += `<div class="category-title">${cat.category}</div>`;
+            cat.endpoints.forEach((ep, epIdx) => {
+                html += `
+                    <div class="endpoint-link" onclick="showDetails(${catIdx}, ${epIdx}, this)">
+                        <span class="method-badge method-${ep.method}">${ep.method}</span>
+                        <span style="font-size: 0.9rem;">${ep.title}</span>
+                    </div>
+                `;
+            });
+        });
+        sidebar.innerHTML = html;
+
+        // --- Render Content ---
+        function showDetails(catIdx, epIdx, el) {
+            document.querySelectorAll('.endpoint-link').forEach(link => link.classList.remove('active'));
+            if(el) el.classList.add('active');
+
+            const ep = apiData[catIdx].endpoints[epIdx];
+            const content = document.getElementById('mainContent');
+
+            let paramsHtml = '';
+            if (ep.requestParams && ep.requestParams.length > 0) {
+                paramsHtml = `
+                    <h3><span style="color:#93c5fd; font-weight:600;"><i class="fas fa-filter"></i> Parameters</span></h3>
+                    <table>
+                        <thead>
+                            <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            ${ep.requestParams.map(p => `<tr><td><code>${p.name}</code></td><td>${p.type}</td><td>${p.desc}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            let bodyHtml = '';
+            if (ep.requestBody) {
+                bodyHtml = `
+                    <h3><span class="hl-req"><i class="fas fa-file-export"></i> Request Body</span></h3>
+                    <pre><code>${ep.requestBody}</code></pre>
+                `;
+            }
+
+            content.innerHTML = `
+                <div class="card">
+                    <h2 style="margin-bottom:20px">${ep.title}</h2>
+                    
+                    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 30px;">
+                        <p style="margin-bottom: 15px; font-size: 1.1rem; line-height: 1.6;">
+                            <strong style="color: var(--gold); display: inline-block; min-width: 110px;"><i class="fas fa-bullseye"></i> Goal:</strong> 
+                            <span style="color: var(--text-main);">${ep.desc}</span>
+                        </p>
+                        <p style="margin: 0; font-size: 1.1rem;">
+                            <strong style="color: var(--gold); display: inline-block; min-width: 110px;"><i class="fas fa-map-marker-alt"></i> Location:</strong> 
+                            <span style="color: #cbd5e1;">${ep.location}</span>
+                        </p>
+                    </div>
+
+                    <div class="url-box">
+                        <span class="method-badge method-${ep.method}" style="font-size: 0.95rem; padding: 6px 12px; margin-right: 15px;">${ep.method}</span>
+                        <span style="color: #a5b4fc; font-weight: 600;">https://travi...</span>${ep.url}
+                    </div>
+
+                    ${paramsHtml}
+                    ${bodyHtml}
+
+                    <h3><span class="hl-res"><i class="fas fa-file-import"></i> Response</span></h3>
+                    <pre><code>${ep.response}</code></pre>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

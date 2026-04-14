@@ -1,0 +1,1708 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TourGuide API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/tourguide/tours": {
+      "post": {
+        "tags": [
+          "Tour"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTourDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTourDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTourDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "MinPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MaxPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Languages",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "City",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TourType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/tours/{id}": {
+      "put": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTourDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTourDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTourDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/tours/admin/{id}": {
+      "delete": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/tours/my-tours": {
+      "get": {
+        "tags": [
+          "Tour"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tours/cards": {
+      "get": {
+        "tags": [
+          "Tour"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/tours/{id}/reviews": {
+      "get": {
+        "tags": [
+          "Tour"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/tour/{tourId}": {
+      "post": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "tourId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/{bookingId}/participants": {
+      "put": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParticipantDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParticipantDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ParticipantDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/payment": {
+      "post": {
+        "tags": [
+          "TourBooking"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessPaymentDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessPaymentDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessPaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/{bookingId}": {
+      "delete": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings": {
+      "get": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/BookingStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/admin/all": {
+      "get": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/BookingStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/admin/{bookingId}": {
+      "get": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/bookings/availability/{tourId}": {
+      "get": {
+        "tags": [
+          "TourBooking"
+        ],
+        "parameters": [
+          {
+            "name": "tourId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "participantsCount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/profile/apply": {
+      "post": {
+        "tags": [
+          "TourGuide"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TourGuideApplicationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TourGuideApplicationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TourGuideApplicationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/profile/update-license": {
+      "post": {
+        "tags": [
+          "TourGuide"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/profile/update-profile": {
+      "post": {
+        "tags": [
+          "TourGuide"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/profile/withdraw": {
+      "post": {
+        "tags": [
+          "TourGuide"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWithdrawRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWithdrawRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWithdrawRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "TourGuide"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/profile/{id}/reviews": {
+      "get": {
+        "tags": [
+          "TourGuide"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/applications": {
+      "get": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/applications/{id}": {
+      "get": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/applications/{id}/approve": {
+      "post": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/applications/{id}/reject": {
+      "post": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectApplicationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectApplicationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectApplicationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/{id}/ban": {
+      "post": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/{id}/suspend": {
+      "post": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuspendTourGuideDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuspendTourGuideDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuspendTourGuideDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/withdraw-requests/pending": {
+      "get": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/admin/withdraw-requests/{requestId}/process": {
+      "post": {
+        "tags": [
+          "TourGuideAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessWithdrawRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessWithdrawRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessWithdrawRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/urgent-requests/submit": {
+      "post": {
+        "tags": [
+          "UrgentRequest"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUrgentRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUrgentRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUrgentRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/urgent-requests/my-requests": {
+      "get": {
+        "tags": [
+          "UrgentRequest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/urgent-requests/admin/pending": {
+      "get": {
+        "tags": [
+          "UrgentRequest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tourguide/urgent-requests/admin/process/{id}": {
+      "post": {
+        "tags": [
+          "UrgentRequest"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminProcessUrgentRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminProcessUrgentRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminProcessUrgentRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdminProcessUrgentRequestDto": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "adminNotes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgeType": {
+        "enum": [
+          "Adult",
+          "Child",
+          "Infant",
+          "Senior"
+        ],
+        "type": "string"
+      },
+      "BookingStatus": {
+        "enum": [
+          "Pending",
+          "Confirmed",
+          "Cancelled",
+          "Completed"
+        ],
+        "type": "string"
+      },
+      "CancellationPolicy": {
+        "enum": [
+          "Hours24",
+          "Hours48",
+          "Hours72"
+        ],
+        "type": "string"
+      },
+      "CreateTourDto": {
+        "required": [
+          "cancellationPolicy",
+          "tourTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "tourTitle": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tourType": {
+            "type": "string",
+            "nullable": true
+          },
+          "tourDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePriceUsd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "durationHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "groupSizeMax": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sitesCovered": {
+            "type": "string",
+            "nullable": true
+          },
+          "startingPoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "ageRestriction": {
+            "type": "string",
+            "nullable": true
+          },
+          "transportIncluded": {
+            "type": "boolean"
+          },
+          "mealsIncluded": {
+            "type": "boolean"
+          },
+          "isAccessible": {
+            "type": "boolean"
+          },
+          "accessibility": {
+            "type": "string",
+            "nullable": true
+          },
+          "customizable": {
+            "type": "boolean"
+          },
+          "season": {
+            "type": "string",
+            "nullable": true
+          },
+          "includedServices": {
+            "type": "string",
+            "nullable": true
+          },
+          "excludedServices": {
+            "type": "string",
+            "nullable": true
+          },
+          "safetyMeasures": {
+            "type": "string",
+            "nullable": true
+          },
+          "bestTimeToVisit": {
+            "type": "string",
+            "nullable": true
+          },
+          "pickupDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancellationPolicy": {
+            "$ref": "#/components/schemas/CancellationPolicy"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TourImageDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateUrgentRequestDto": {
+        "required": [
+          "reason",
+          "tourId"
+        ],
+        "type": "object",
+        "properties": {
+          "tourId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "documentationUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateWithdrawRequestDto": {
+        "required": [
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "minimum": 0.01,
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmergencyContactDto": {
+        "required": [
+          "emergencyName",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "emergencyName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gender": {
+        "enum": [
+          "Male",
+          "Female"
+        ],
+        "type": "string"
+      },
+      "Language": {
+        "enum": [
+          "English",
+          "Spanish",
+          "French",
+          "German",
+          "Italian",
+          "Portuguese",
+          "Russian",
+          "Japanese",
+          "Chinese",
+          "Arabic",
+          "Hindi",
+          "Bengali",
+          "Turkish",
+          "Korean",
+          "Dutch",
+          "Swedish",
+          "Norwegian",
+          "Danish",
+          "Finnish",
+          "Polish",
+          "Greek",
+          "Hebrew",
+          "Thai",
+          "Vietnamese",
+          "Indonesian"
+        ],
+        "type": "string"
+      },
+      "ParticipantDto": {
+        "required": [
+          "ageType",
+          "firstName",
+          "lastName",
+          "participantType",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "participantType": {
+            "$ref": "#/components/schemas/ParticipantType"
+          },
+          "ageType": {
+            "$ref": "#/components/schemas/AgeType"
+          },
+          "firstName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "nationality": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialNeeds": {
+            "type": "string",
+            "nullable": true
+          },
+          "dietaryRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "emergencyContacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmergencyContactDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ParticipantType": {
+        "enum": [
+          "Adult",
+          "Child",
+          "Infant"
+        ],
+        "type": "string"
+      },
+      "ProcessPaymentDto": {
+        "required": [
+          "bookingId",
+          "platformCommissionPercentage"
+        ],
+        "type": "object",
+        "properties": {
+          "bookingId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "stripePaymentIntentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userSavedCardId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "platformCommissionPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProcessWithdrawRequestDto": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "adminNotes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RejectApplicationDto": {
+        "required": [
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuspendTourGuideDto": {
+        "required": [
+          "duration",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "duration": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/SuspensionUnit"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuspensionUnit": {
+        "enum": [
+          "Hours",
+          "Days",
+          "Weeks",
+          "Years"
+        ],
+        "type": "string"
+      },
+      "TourGuideApplicationDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseCard": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseIdFrontPhoto": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseIdBackPhoto": {
+            "type": "string",
+            "nullable": true
+          },
+          "certification": {
+            "type": "string",
+            "nullable": true
+          },
+          "experienceYears": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Language"
+            },
+            "nullable": true
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TourImageDto": {
+        "type": "object",
+        "properties": {
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateLicenseDto": {
+        "type": "object",
+        "properties": {
+          "licenseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseCard": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseIdFrontPhoto": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseIdBackPhoto": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "certification": {
+            "type": "string",
+            "nullable": true
+          },
+          "experienceYears": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Language"
+            },
+            "nullable": true
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateTourDto": {
+        "required": [
+          "cancellationPolicy",
+          "tourTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "tourTitle": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tourType": {
+            "type": "string",
+            "nullable": true
+          },
+          "tourDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePriceUsd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "durationHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "groupSizeMax": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sitesCovered": {
+            "type": "string",
+            "nullable": true
+          },
+          "startingPoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "ageRestriction": {
+            "type": "string",
+            "nullable": true
+          },
+          "transportIncluded": {
+            "type": "boolean"
+          },
+          "mealsIncluded": {
+            "type": "boolean"
+          },
+          "isAccessible": {
+            "type": "boolean"
+          },
+          "accessibility": {
+            "type": "string",
+            "nullable": true
+          },
+          "customizable": {
+            "type": "boolean"
+          },
+          "season": {
+            "type": "string",
+            "nullable": true
+          },
+          "includedServices": {
+            "type": "string",
+            "nullable": true
+          },
+          "excludedServices": {
+            "type": "string",
+            "nullable": true
+          },
+          "safetyMeasures": {
+            "type": "string",
+            "nullable": true
+          },
+          "bestTimeToVisit": {
+            "type": "string",
+            "nullable": true
+          },
+          "pickupDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancellationPolicy": {
+            "$ref": "#/components/schemas/CancellationPolicy"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TourImageDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Please insert JWT with Bearer into field",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

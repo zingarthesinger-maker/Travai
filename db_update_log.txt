@@ -1,0 +1,85 @@
+﻿Using project 'C:\Users\basant\source\repos\travai\travai\travai.csproj'.
+Using startup project 'C:\Users\basant\source\repos\travai\travai\travai.csproj'.
+dotnet msbuild /getProperty:ProjectName /getProperty:AssemblyName /getProperty:DesignAssembly /getProperty:Language /getProperty:OutputPath /getProperty:PlatformTarget /getProperty:ProjectAssetsFile /getProperty:ProjectDir /getProperty:RootNamespace /getProperty:RuntimeFrameworkVersion /getProperty:TargetFileName /getProperty:TargetFrameworkMoniker /getProperty:Nullable /getProperty:TargetFramework /getProperty:TargetPlatformIdentifier /getProperty:Platform /t:ResolvePackageAssets /getItem:RuntimeCopyLocalItems C:\Users\basant\source\repos\travai\travai\travai.csproj
+dotnet msbuild /getProperty:ProjectName /getProperty:AssemblyName /getProperty:DesignAssembly /getProperty:Language /getProperty:OutputPath /getProperty:PlatformTarget /getProperty:ProjectAssetsFile /getProperty:ProjectDir /getProperty:RootNamespace /getProperty:RuntimeFrameworkVersion /getProperty:TargetFileName /getProperty:TargetFrameworkMoniker /getProperty:Nullable /getProperty:TargetFramework /getProperty:TargetPlatformIdentifier /getProperty:Platform /t:ResolvePackageAssets /getItem:RuntimeCopyLocalItems C:\Users\basant\source\repos\travai\travai\travai.csproj
+Build started...
+dotnet build C:\Users\basant\source\repos\travai\travai\travai.csproj /verbosity:quiet /nologo /p:PublishAot=false
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.67
+
+Build succeeded.
+dotnet exec --depsfile C:\Users\basant\source\repos\travai\travai\bin\Debug\net8.0\travai.deps.json --additionalprobingpath C:\Users\basant\.nuget\packages --additionalprobingpath "C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages" --runtimeconfig C:\Users\basant\source\repos\travai\travai\bin\Debug\net8.0\travai.runtimeconfig.json C:\Users\basant\.dotnet\tools\.store\dotnet-ef\10.0.2\dotnet-ef\10.0.2\tools\net8.0\any\tools\net8.0\any\ef.dll database update --assembly C:\Users\basant\source\repos\travai\travai\bin\Debug\net8.0\travai.dll --project C:\Users\basant\source\repos\travai\travai\travai.csproj --startup-assembly C:\Users\basant\source\repos\travai\travai\bin\Debug\net8.0\travai.dll --startup-project C:\Users\basant\source\repos\travai\travai\travai.csproj --project-dir C:\Users\basant\source\repos\travai\travai\ --root-namespace travai --language C# --framework net8.0 --design-assembly C:\Users\basant\.nuget\packages\microsoft.entityframeworkcore.design\8.0.0\lib\net8.0\Microsoft.EntityFrameworkCore.Design.dll --nullable --working-dir C:\Users\basant\source\repos\travai\travai --verbose
+Using assembly 'travai'.
+Using startup assembly 'travai'.
+Using application base 'C:\Users\basant\source\repos\travai\travai\bin\Debug\net8.0'.
+Using working directory 'C:\Users\basant\source\repos\travai\travai'.
+Using root namespace 'travai'.
+Using project directory 'C:\Users\basant\source\repos\travai\travai\'.
+Remaining arguments: .
+Finding DbContext classes...
+Finding IDesignTimeDbContextFactory implementations...
+Finding application service provider in assembly 'travai'...
+Finding Microsoft.Extensions.Hosting service provider...
+Using environment 'Development'.
+Using application service provider from Microsoft.Extensions.Hosting.
+Found DbContext 'ApplicationDbContext'.
+Finding DbContext classes in the project...
+Using context 'ApplicationDbContext'.
+Finding design-time services referenced by assembly 'travai'...
+Finding design-time services referenced by assembly 'travai'...
+No referenced design-time services were found.
+Finding design-time services for provider 'Microsoft.EntityFrameworkCore.SqlServer'...
+Using design-time services from provider 'Microsoft.EntityFrameworkCore.SqlServer'.
+Finding IDesignTimeServices implementations in assembly 'travai'...
+No design-time services were found.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (64ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+Executed DbCommand (64ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (107ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+Executed DbCommand (107ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20260202224857_UpdateUserSchema'.
+Applying migration '20260202224857_UpdateUserSchema'.
+System.InvalidOperationException: To change the IDENTITY property of a column, the column needs to be dropped and recreated.
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(AlterColumnOperation operation, IModel model, MigrationCommandListBuilder builder)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.<>c.<.cctor>b__82_4(MigrationsSqlGenerator g, MigrationOperation o, IModel m, MigrationCommandListBuilder b)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(MigrationOperation operation, IModel model, MigrationCommandListBuilder builder)
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(MigrationOperation operation, IModel model, MigrationCommandListBuilder builder)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(IReadOnlyList`1 operations, IModel model, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(IReadOnlyList`1 operations, IModel model, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.GenerateUpSql(Migration migration, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c__DisplayClass16_2.<GetMigrationCommandLists>b__2()
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.Design.Internal.MigrationsOperations.UpdateDatabase(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabaseImpl(String targetMigration, String connectionString, String contextType)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.UpdateDatabase.<>c__DisplayClass0_0.<.ctor>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.Execute(Action action)
+To change the IDENTITY property of a column, the column needs to be dropped and recreated.

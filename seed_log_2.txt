@@ -1,0 +1,262 @@
+﻿Using launch settings from C:\Users\basant\source\repos\Travai\hotel\travai\travai\Properties\launchSettings.json...
+Building...
+Command: Starting Database Seeding...
+Unified Seeder: Starting FULL RECONSTRUCTION...
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'Price' on entity type 'Flight'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'TotalPrice' on entity type 'Booking'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Comment], [t].[CreatedAt], [t].[Rating], [t].[TourGuideId], [t].[TourId], [t].[UserId]
+      FROM [tourguide_Reviews] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[AmountPaid], [t].[BookingId], [t].[CreatedAt], [t].[Currency], [t].[PayoutStatus], [t].[PlatformCommission], [t].[ProviderNetAmount], [t].[Status], [t].[StripePaymentIntentId], [t].[UpdatedAt], [t].[UserId], [t].[UserSavedCardId]
+      FROM [tourguide_TourBookingPayments] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[AgeType], [t].[BookingId], [t].[DateOfBirth], [t].[DietaryRequirements], [t].[FirstName], [t].[Gender], [t].[LastName], [t].[MiddleName], [t].[Nationality], [t].[ParticipantType], [t].[Price], [t].[SpecialNeeds]
+      FROM [tourguide_TourBookingParticipants] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[BookingDate], [t].[CreatedAt], [t].[Currency], [t].[ParticipantsCount], [t].[PaymentStatus], [t].[SpecialRequests], [t].[Status], [t].[TotalPrice], [t].[TourDate], [t].[TourGuideId], [t].[TourId], [t].[TourTime], [t].[UpdatedAt], [t].[UserId]
+      FROM [tourguide_TourBookings] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Caption], [t].[ImageUrl], [t].[IsPrimary], [t].[SortOrder], [t].[TourId]
+      FROM [tourguide_TourImages] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Accessibility], [t].[Active], [t].[AgeRestriction], [t].[AvailableDateTime], [t].[BasePriceUsd], [t].[BestTimeToVisit], [t].[CancellationPolicy], [t].[City], [t].[CreatedAt], [t].[Currency], [t].[Customizable], [t].[DurationHours], [t].[ExcludedServices], [t].[GroupSizeMax], [t].[IncludedServices], [t].[IsAccessible], [t].[MealsIncluded], [t].[NumberOfReviews], [t].[PickupDetails], [t].[Rating], [t].[SafetyMeasures], [t].[Season], [t].[SitesCovered], [t].[SourcePlatform], [t].[StartingPoint], [t].[TourDescription], [t].[TourGuideId], [t].[TourTitle], [t].[TourType], [t].[TransportIncluded], [t].[UpdatedAt]
+      FROM [tourguide_Tours] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[PhoneNumber], [t].[PhoneVerified], [t].[TourGuideId]
+      FROM [tourguide_TourGuidePhones] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Language], [t].[TourGuideId]
+      FROM [tourguide_TourGuideLanguages] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Email], [t].[EmailVerified], [t].[TourGuideId]
+      FROM [tourguide_TourGuideEmails] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[City], [t].[TourGuideId]
+      FROM [tourguide_TourGuideCities] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[AdminNotes], [t].[CreatedAt], [t].[DocumentationUrl], [t].[ProcessedAt], [t].[Reason], [t].[Status], [t].[TourGuideId], [t].[TourId]
+      FROM [tourguide_UrgentRequests] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[AdminNotes], [t].[Amount], [t].[CreatedAt], [t].[ProcessedAt], [t].[Status], [t].[TourGuideId]
+      FROM [tourguide_WithdrawRequests] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Bio], [t].[Certification], [t].[ExperienceYears], [t].[LicenseCard], [t].[LicenseId], [t].[LicenseIdBackPhoto], [t].[LicenseIdFrontPhoto], [t].[Name], [t].[RejectionReason], [t].[Status], [t].[SuspendedUntil], [t].[UserId]
+      FROM [tourguide_TourGuides] AS [t]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[Comment], [a].[FlightId], [a].[Rating], [a].[ReviewDate], [a].[UserId]
+      FROM [airline_Reviews] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[Amount], [a].[CreatedAt], [a].[Description], [a].[ReferenceId], [a].[Type], [a].[UserId]
+      FROM [airline_WalletTransactions] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[BookingId], [a].[IsFromAdmin], [a].[Message], [a].[SenderId], [a].[SentAt]
+      FROM [airline_ChatMessages] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[PassengerId], [a].[PhoneNumber]
+      FROM [airline_PassengerPhones] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[EmergencyName], [a].[PassengerId], [a].[PhoneNumber]
+      FROM [airline_PassengerEmergencyContacts] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[AgeType], [a].[BookingId], [a].[FirstName], [a].[LastName], [a].[Nationality], [a].[PassengerType], [a].[PassportImage], [a].[PassportNumber], [a].[Price], [a].[ProfilePic], [a].[RejectionReason], [a].[Status]
+      FROM [airline_Passengers] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[BookingDate], [a].[FlightId], [a].[NumberOfSeats], [a].[PaymentStatus], [a].[RejectionReason], [a].[Status], [a].[TotalPrice], [a].[UserId]
+      FROM [airline_Bookings] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[AirlineId], [a].[ArrivalAirportCode], [a].[ArrivalTime], [a].[AvailableSeats], [a].[CreatedByUserId], [a].[DepartureAirportCode], [a].[DepartureTime], [a].[DestinationImageUrl], [a].[FlightNumber], [a].[NumberOfStops], [a].[Price], [a].[Status]
+      FROM [airline_Flights] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[Country], [a].[IsApproved], [a].[LicenseNumber], [a].[LogoUrl], [a].[Name], [a].[Status], [a].[UserId], [a].[Verified]
+      FROM [airline_Airlines] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Code], [a].[City], [a].[Country], [a].[Name]
+      FROM [airline_Airports] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[Comment], [h].[CreatedAt], [h].[HotelId], [h].[Rating], [h].[UpdatedAt], [h].[UserId]
+      FROM [hotel_HotelReviews] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[BookingId], [h].[MealPlan], [h].[Nights], [h].[PricePerNight], [h].[RoomId], [h].[RoomName], [h].[Subtotal]
+      FROM [hotel_HotelBookingRooms] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CheckInDate], [h].[CheckOutDate], [h].[CreatedAt], [h].[HotelId], [h].[Nights], [h].[PaymentStatus], [h].[Status], [h].[TotalPrice], [h].[TotalRooms], [h].[UpdatedAt], [h].[UserId]
+      FROM [hotel_HotelBookings] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[AIPrice], [h].[BBPrice], [h].[BedType], [h].[CreatedAt], [h].[FBPrice], [h].[HBPrice], [h].[HotelId], [h].[Name], [h].[Occupancy], [h].[Quantity], [h].[ROPrice], [h].[State], [h].[UpdatedAt]
+      FROM [hotel_HotelRooms] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[AmenityId], [h].[CreatedAt], [h].[HotelId]
+      FROM [hotel_HotelAmenities] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CreatedAt], [h].[DocumentTypeId], [h].[FileUrl], [h].[HotelId], [h].[Notes], [h].[UpdatedAt], [h].[UploadedAt]
+      FROM [hotel_HotelDocuments] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[Caption], [h].[HotelId], [h].[ImageUrl], [h].[IsPrimary], [h].[SortOrder]
+      FROM [hotel_HotelImages] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CancellationStrategy], [h].[CreatedAt], [h].[HotelId], [h].[IncludeCityTax], [h].[IncludeServiceCharge], [h].[IncludeVat], [h].[ServiceChargePct], [h].[UpdatedAt]
+      FROM [hotel_HotelPolicies] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[ContactType], [h].[ContactValue], [h].[CreatedAt], [h].[HotelId], [h].[UpdatedAt]
+      FROM [hotel_HotelContacts] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CreatedAt], [h].[FieldDefinitionId], [h].[HotelId], [h].[UpdatedAt], [h].[Value]
+      FROM [hotel_HotelFieldValues] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[AccommodationType], [h].[Active], [h].[AddressDetails], [h].[AddressProofUrl], [h].[AvgReviewScore], [h].[CityArea], [h].[Country], [h].[CreatedAt], [h].[Description], [h].[Governorate], [h].[HotelName], [h].[NumReviews], [h].[PriceUsd], [h].[PropertyType], [h].[RejectionReason], [h].[StarRating], [h].[TypeNorm], [h].[UpdatedAt], [h].[UserId], [h].[VerificationDate], [h].[VerificationStatus], [h].[Verified]
+      FROM [hotel_Hotels] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CreatedAt], [h].[IsActive], [h].[IsRequired], [h].[KeyName], [h].[Name], [h].[UpdatedAt]
+      FROM [hotel_DocumentTypes] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[CreatedAt], [h].[DisplayName], [h].[FieldType], [h].[IsActive], [h].[IsRequired], [h].[KeyName], [h].[UpdatedAt]
+      FROM [hotel_HotelFieldDefinitions] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [h].[Id], [h].[Category], [h].[CreatedAt], [h].[IsHighlighted], [h].[Name], [h].[UpdatedAt]
+      FROM [hotel_Amenities] AS [h]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[AgeType], [a].[FirstName], [a].[LastName], [a].[Nationality], [a].[PassportImage], [a].[PassportNumber], [a].[ProfilePic], [a].[UserId]
+      FROM [airline_UserCompanions] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[PhoneNumber], [u].[PhoneVerified], [u].[PhoneVerifiedAt], [u].[UserId]
+      FROM [UserPhones] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[Token], [r].[UserId]
+      FROM [RefreshTokens] AS [r]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[Gender], [u].[IsBanned], [u].[IsEmailConfirmed], [u].[Name], [u].[Nationality], [u].[PassportImage], [u].[PassportNumber], [u].[PasswordHash], [u].[ProfilePic], [u].[Role], [u].[Status], [u].[UpdatedAt], [u].[UserName], [u].[WalletBalance]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (531ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = Int64), @p2='?' (DbType = Int64), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Int64), @p6='?' (DbType = Int64), @p7='?' (DbType = Int64), @p8='?' (DbType = Int64), @p9='?' (DbType = Int64), @p10='?' (DbType = Int64), @p11='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p0;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p1;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p2;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p3;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p4;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p5;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p6;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p7;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p8;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p9;
+      DELETE FROM [airline_UserCompanions]
+      OUTPUT 1
+      WHERE [Id] = @p10;
+      DELETE FROM [Users]
+      OUTPUT 1
+      WHERE [Id] = @p11;
+Cleanup: Database Wiped.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SET IDENTITY_INSERT Users ON
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (Size = 450), @p4='?' (Size = 10), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (Size = 20), @p14='?' (Size = 20), @p15='?' (DbType = DateTime2), @p16='?' (Size = 450), @p17='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p18='?' (DbType = Int64), @p19='?' (DbType = DateTime2), @p20='?' (DbType = DateTime2), @p21='?' (Size = 450), @p22='?' (Size = 10), @p23='?' (DbType = Boolean), @p24='?' (DbType = Boolean), @p25='?' (Size = 4000), @p26='?' (Size = 4000), @p27='?' (Size = 4000), @p28='?' (Size = 4000), @p29='?' (Size = 4000), @p30='?' (Size = 4000), @p31='?' (Size = 20), @p32='?' (Size = 20), @p33='?' (DbType = DateTime2), @p34='?' (Size = 450), @p35='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p36='?' (DbType = Int64), @p37='?' (DbType = DateTime2), @p38='?' (DbType = DateTime2), @p39='?' (Size = 450), @p40='?' (Size = 10), @p41='?' (DbType = Boolean), @p42='?' (DbType = Boolean), @p43='?' (Size = 4000), @p44='?' (Size = 4000), @p45='?' (Size = 4000), @p46='?' (Size = 4000), @p47='?' (Size = 4000), @p48='?' (Size = 4000), @p49='?' (Size = 20), @p50='?' (Size = 20), @p51='?' (DbType = DateTime2), @p52='?' (Size = 450), @p53='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p54='?' (DbType = Int64), @p55='?' (DbType = DateTime2), @p56='?' (DbType = DateTime2), @p57='?' (Size = 450), @p58='?' (Size = 10), @p59='?' (DbType = Boolean), @p60='?' (DbType = Boolean), @p61='?' (Size = 4000), @p62='?' (Size = 4000), @p63='?' (Size = 4000), @p64='?' (Size = 4000), @p65='?' (Size = 4000), @p66='?' (Size = 4000), @p67='?' (Size = 20), @p68='?' (Size = 20), @p69='?' (DbType = DateTime2), @p70='?' (Size = 450), @p71='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p72='?' (DbType = Int64), @p73='?' (DbType = DateTime2), @p74='?' (DbType = DateTime2), @p75='?' (Size = 450), @p76='?' (Size = 10), @p77='?' (DbType = Boolean), @p78='?' (DbType = Boolean), @p79='?' (Size = 4000), @p80='?' (Size = 4000), @p81='?' (Size = 4000), @p82='?' (Size = 4000), @p83='?' (Size = 4000), @p84='?' (Size = 4000), @p85='?' (Size = 20), @p86='?' (Size = 20), @p87='?' (DbType = DateTime2), @p88='?' (Size = 450), @p89='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p90='?' (DbType = Int64), @p91='?' (DbType = DateTime2), @p92='?' (DbType = DateTime2), @p93='?' (Size = 450), @p94='?' (Size = 10), @p95='?' (DbType = Boolean), @p96='?' (DbType = Boolean), @p97='?' (Size = 4000), @p98='?' (Size = 4000), @p99='?' (Size = 4000), @p100='?' (Size = 4000), @p101='?' (Size = 4000), @p102='?' (Size = 4000), @p103='?' (Size = 20), @p104='?' (Size = 20), @p105='?' (DbType = DateTime2), @p106='?' (Size = 450), @p107='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p108='?' (DbType = Int64), @p109='?' (DbType = DateTime2), @p110='?' (DbType = DateTime2), @p111='?' (Size = 450), @p112='?' (Size = 10), @p113='?' (DbType = Boolean), @p114='?' (DbType = Boolean), @p115='?' (Size = 4000), @p116='?' (Size = 4000), @p117='?' (Size = 4000), @p118='?' (Size = 4000), @p119='?' (Size = 4000), @p120='?' (Size = 4000), @p121='?' (Size = 20), @p122='?' (Size = 20), @p123='?' (DbType = DateTime2), @p124='?' (Size = 450), @p125='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p126='?' (DbType = Int64), @p127='?' (DbType = DateTime2), @p128='?' (DbType = DateTime2), @p129='?' (Size = 450), @p130='?' (Size = 10), @p131='?' (DbType = Boolean), @p132='?' (DbType = Boolean), @p133='?' (Size = 4000), @p134='?' (Size = 4000), @p135='?' (Size = 4000), @p136='?' (Size = 4000), @p137='?' (Size = 4000), @p138='?' (Size = 4000), @p139='?' (Size = 20), @p140='?' (Size = 20), @p141='?' (DbType = DateTime2), @p142='?' (Size = 450), @p143='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p144='?' (DbType = Int64), @p145='?' (DbType = DateTime2), @p146='?' (DbType = DateTime2), @p147='?' (Size = 450), @p148='?' (Size = 10), @p149='?' (DbType = Boolean), @p150='?' (DbType = Boolean), @p151='?' (Size = 4000), @p152='?' (Size = 4000), @p153='?' (Size = 4000), @p154='?' (Size = 4000), @p155='?' (Size = 4000), @p156='?' (Size = 4000), @p157='?' (Size = 20), @p158='?' (Size = 20), @p159='?' (DbType = DateTime2), @p160='?' (Size = 450), @p161='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p162='?' (DbType = Int64), @p163='?' (DbType = DateTime2), @p164='?' (DbType = DateTime2), @p165='?' (Size = 450), @p166='?' (Size = 10), @p167='?' (DbType = Boolean), @p168='?' (DbType = Boolean), @p169='?' (Size = 4000), @p170='?' (Size = 4000), @p171='?' (Size = 4000), @p172='?' (Size = 4000), @p173='?' (Size = 4000), @p174='?' (Size = 4000), @p175='?' (Size = 20), @p176='?' (Size = 20), @p177='?' (DbType = DateTime2), @p178='?' (Size = 450), @p179='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p180='?' (DbType = Int64), @p181='?' (DbType = DateTime2), @p182='?' (DbType = DateTime2), @p183='?' (Size = 450), @p184='?' (Size = 10), @p185='?' (DbType = Boolean), @p186='?' (DbType = Boolean), @p187='?' (Size = 4000), @p188='?' (Size = 4000), @p189='?' (Size = 4000), @p190='?' (Size = 4000), @p191='?' (Size = 4000), @p192='?' (Size = 4000), @p193='?' (Size = 20), @p194='?' (Size = 20), @p195='?' (DbType = DateTime2), @p196='?' (Size = 450), @p197='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [Users] ([Id], [CreatedAt], [DateOfBirth], [Email], [Gender], [IsBanned], [IsEmailConfirmed], [Name], [Nationality], [PassportImage], [PassportNumber], [PasswordHash], [ProfilePic], [Role], [Status], [UpdatedAt], [UserName], [WalletBalance])
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17),
+      (@p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, @p29, @p30, @p31, @p32, @p33, @p34, @p35),
+      (@p36, @p37, @p38, @p39, @p40, @p41, @p42, @p43, @p44, @p45, @p46, @p47, @p48, @p49, @p50, @p51, @p52, @p53),
+      (@p54, @p55, @p56, @p57, @p58, @p59, @p60, @p61, @p62, @p63, @p64, @p65, @p66, @p67, @p68, @p69, @p70, @p71),
+      (@p72, @p73, @p74, @p75, @p76, @p77, @p78, @p79, @p80, @p81, @p82, @p83, @p84, @p85, @p86, @p87, @p88, @p89),
+      (@p90, @p91, @p92, @p93, @p94, @p95, @p96, @p97, @p98, @p99, @p100, @p101, @p102, @p103, @p104, @p105, @p106, @p107),
+      (@p108, @p109, @p110, @p111, @p112, @p113, @p114, @p115, @p116, @p117, @p118, @p119, @p120, @p121, @p122, @p123, @p124, @p125),
+      (@p126, @p127, @p128, @p129, @p130, @p131, @p132, @p133, @p134, @p135, @p136, @p137, @p138, @p139, @p140, @p141, @p142, @p143),
+      (@p144, @p145, @p146, @p147, @p148, @p149, @p150, @p151, @p152, @p153, @p154, @p155, @p156, @p157, @p158, @p159, @p160, @p161),
+      (@p162, @p163, @p164, @p165, @p166, @p167, @p168, @p169, @p170, @p171, @p172, @p173, @p174, @p175, @p176, @p177, @p178, @p179),
+      (@p180, @p181, @p182, @p183, @p184, @p185, @p186, @p187, @p188, @p189, @p190, @p191, @p192, @p193, @p194, @p195, @p196, @p197);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SET IDENTITY_INSERT Users OFF
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@p0='?' (Size = 20), @p1='?' (Size = 100), @p2='?' (Size = 100), @p3='?' (Size = 50), @p4='?' (Size = 4000), @p5='?' (Size = 50), @p6='?' (Size = 4000), @p7='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [airline_UserCompanions] ([AgeType], [FirstName], [LastName], [Nationality], [PassportImage], [PassportNumber], [ProfilePic], [UserId])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+Step 1: Users Seeded.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SET IDENTITY_INSERT hotel_DocumentTypes ON
+fail: Microsoft.EntityFrameworkCore.Database.Command[20102]
+      Failed executing DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SET IDENTITY_INSERT hotel_HotelFieldDefinitions ON
+FATAL SEEDER ERROR: IDENTITY_INSERT is already ON for table 'Travai2.dbo.hotel_DocumentTypes'. Cannot perform SET operation for table 'hotel_HotelFieldDefinitions'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean isAsync, Int32 timeout, Boolean asyncWrite)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRaw(DatabaseFacade databaseFacade, String sql, IEnumerable`1 parameters)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRaw(DatabaseFacade databaseFacade, String sql, Object[] parameters)
+   at travai.Data.DbSeeder.SeedLookups(ApplicationDbContext context) in C:\Users\basant\source\repos\Travai\hotel\travai\travai\Data\DbSeeder.cs:line 173
+   at travai.Data.DbSeeder.Seed(ApplicationDbContext context) in C:\Users\basant\source\repos\Travai\hotel\travai\travai\Data\DbSeeder.cs:line 36
+Command: Seeding Completed. Exiting.

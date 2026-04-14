@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Guide API Documentation | Travai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #22c55e;
+            --primary-hover: #16a34a;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --gold: #d4a853;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --success: #22c55e;
+            --pending: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 320px;
+            background-color: #020617;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin: 25px 0 10px 10px;
+        }
+
+        .endpoint-link {
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+        }
+
+        .endpoint-link:hover { background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); }
+        .endpoint-link.active { background: var(--primary); color: white; border-color: var(--primary-hover); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); }
+
+        .method-badge {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 6px;
+            border-radius: 4px;
+            min-width: 45px;
+            text-align: center;
+        }
+        .method-GET { background: #0ea5e9; color: white; }
+        .method-POST { background: #10b981; color: white; }
+        .method-PUT { background: #f59e0b; color: white; }
+        .method-DELETE { background: #ef4444; color: white; }
+
+        /* Main Content */
+        #mainContent {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05), transparent);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 { font-size: 2rem; font-weight: 800; margin-bottom: 25px; letter-spacing: -1px; }
+        h3 { font-size: 1.1rem; color: var(--gold); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+
+        .url-box {
+            background: #020617;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        pre {
+            background: #020617;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #4ade80;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: rgba(255,255,255,0.05); font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); }
+        
+        .hl-req { color: #10b981; }
+        .hl-res { color: #f59e0b; }
+
+        .welcome-screen {
+            text-align: center;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div style="padding: 10px; text-align: center; margin-bottom: 20px;">
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">TRAVAI <span style="color:white">GUIDE</span></h1>
+            <p style="font-size: 0.7rem; color: var(--text-muted); opacity: 0.6; margin-top: 5px;">TOUR GUIDE ENGINE v1.0</p>
+        </div>
+        <div id="endpoints-list"></div>
+    </div>
+
+    <div id="mainContent">
+        <div class="welcome-screen">
+            <i class="fas fa-mountain-sun" style="font-size: 5rem; color: var(--primary); margin-bottom: 30px;"></i>
+            <h1 style="font-size: 3rem;">Tour Guide <span style="color: var(--gold);">API Docs</span></h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 20px auto;">
+                Full technical reference for the Tour Guide module. Includes guide onboarding, tour creation, booking lifecycle, and financial withdrawals.
+            </p>
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+                <div style="padding: 15px 25px; background: rgba(34, 197, 94, 0.1); border-radius: 15px; border: 1px solid var(--primary);">
+                    <div style="font-size: 1.5rem; font-weight: 800;">30+</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Active Endpoints</div>
+                </div>
+                <div style="padding: 15px 25px; background: rgba(212, 168, 83, 0.1); border-radius: 15px; border: 1px solid var(--gold);">
+                    <div style="font-size: 1.5rem; font-weight: 800;">SECURE</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Role Based</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiData = [
+            {
+                category: "1. Profile & Onboarding",
+                endpoints: [
+                    {
+                        title: "Apply to be Guide", method: "POST", url: "/api/tourguide/profile/apply",
+                        location: "Mobile: Join as Guide Screen",
+                        desc: "User submits application with license photos and experience to become a verified Guide.",
+                        requestParams: null,
+                        requestBody: "{\n  \"fullName\": \"string\",\n  \"licenseNumber\": \"string\",\n  \"licensePhotoUrl\": \"url\",\n  \"bio\": \"string\",\n  \"governorate\": \"string\"\n}",
+                        response: "{\n  \"id\": 10, \"status\": \"Pending\", \"message\": \"Application submitted\"\n}"
+                    },
+                    {
+                        title: "Update Profile", method: "POST", url: "/api/tourguide/profile/update-profile",
+                        location: "Mobile: Guide Settings Tab",
+                        desc: "Allows active guides to update their bio and governorate. Requires admin re-approval.",
+                        requestParams: null,
+                        requestBody: "{\n  \"bio\": \"Updated bio text\",\n  \"governorate\": \"Aswan\"\n}",
+                        response: "{\n  \"message\": \"Profile updated, status: Pending\"\n}"
+                    },
+                    {
+                        title: "Update License", method: "POST", url: "/api/tourguide/profile/update-license",
+                        location: "Mobile: Guide Verification Screen",
+                        desc: "Upload new license photos when old ones expire.",
+                        requestParams: null,
+                        requestBody: "{\n  \"licenseNumber\": \"string\",\n  \"licensePhotoUrl\": \"url\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "2. Tour Management",
+                endpoints: [
+                    {
+                        title: "Create Tour", method: "POST", url: "/api/tourguide/tours",
+                        location: "Mobile: Create Tour Screen",
+                        desc: "Guide publishes a new tour with price, duration, and maximum participants.",
+                        requestParams: null,
+                        requestBody: "{\n  \"title\": \"Cairo by Night\",\n  \"description\": \"Great walk...\",\n  \"pricePerPerson\": 25.00,\n  \"maxParticipants\": 10,\n  \"durationInHours\": 4,\n  \"governorate\": \"Cairo\"\n}",
+                        response: "{\n  \"id\": 101, \"title\": \"Cairo by Night\"\n}"
+                    },
+                    {
+                        title: "List My Tours", method: "GET", url: "/api/tourguide/tours/my-tours",
+                        location: "Mobile: My Managed Tours",
+                        desc: "Retrieves all tours created by the authenticated guide.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "[\n  { \"id\": 101, \"title\": \"Cairo by Night\", \"activeBookings\": 2 }\n]"
+                    },
+                    {
+                        title: "Search Tours", method: "GET", url: "/api/tourguide/tours",
+                        location: "Mobile: Discover Tours Screen",
+                        desc: "Public endpoint for users to find tours by location, price, and date.",
+                        requestParams: [
+                            { name: "governorate", type: "Query", desc: " Cairo, Luxor, etc." },
+                            { name: "minPrice", type: "Query", desc: "Decimal" },
+                            { name: "maxPrice", type: "Query", desc: "Decimal" }
+                        ],
+                        requestBody: null,
+                        response: "{\n  \"tours\": [], \"totalCount\": 50\n}"
+                    },
+                    {
+                        title: "Delete Tour", method: "DELETE", url: "/api/tourguide/tours/{id}",
+                        location: "Mobile: Tour Management",
+                        desc: "Permanently deletes a tour. Only possible if no active bookings exist.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Tour ID" }],
+                        requestBody: null,
+                        response: "{\n  \"message\": \"Tour deleted successfully\"\n}"
+                    }
+                ]
+            },
+            {
+                category: "3. Booking System",
+                endpoints: [
+                    {
+                        title: "Initial Booking", method: "POST", url: "/api/tourguide/bookings/tour/{tourId}",
+                        location: "Mobile: Tour Details -> Book Now",
+                        desc: "Step 1: Reserve a slot for a specific tour. Sets status to 'Pending'.",
+                        requestParams: [{ name: "tourId", type: "Path", desc: "Tour ID" }],
+                        requestBody: null,
+                        response: "{\n  \"bookingId\": 501, \"status\": \"Pending\"\n}"
+                    },
+                    {
+                        title: "Set Participants", method: "PUT", url: "/api/tourguide/bookings/{id}/participants",
+                        location: "Mobile: Add Travelers Screen",
+                        desc: "Step 2: Add traveler names and passport info to the booking.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Booking ID" }],
+                        requestBody: "[\n  { \"fullName\": \"John Doe\", \"passportNumber\": \"A123\" }\n]",
+                        response: "{\n  \"bookingId\": 501, \"totalPrice\": 100\n}"
+                    },
+                    {
+                        title: "Pay & Confirm", method: "POST", url: "/api/tourguide/bookings/payment",
+                        location: "Mobile: Payment Checkout",
+                        desc: "Step 3: Process wallet payment to finalize the booking.",
+                        requestParams: null,
+                        requestBody: "{\n  \"bookingId\": 501,\n  \"paymentMethod\": \"Wallet\"\n}",
+                        response: "{\n  \"success\": true, \"message\": \"Paid\"\n}"
+                    },
+                    {
+                        title: "My Bookings", method: "GET", url: "/api/tourguide/bookings",
+                        location: "Mobile: User Bookings Tab",
+                        desc: "History of all tours joined by the user.",
+                        requestParams: [{ name: "status", type: "Query", desc: "Pending|Confirmed|Cancelled" }],
+                        requestBody: null,
+                        response: "[\n  { \"id\": 501, \"tourTitle\": \"Sun & Sand\", \"status\": \"Confirmed\" }\n]"
+                    }
+                ]
+            },
+            {
+                category: "4. Urgent Requests",
+                endpoints: [
+                    {
+                        title: "Request On-Demand", method: "POST", url: "/api/tourguide/urgent-requests/submit",
+                        location: "Mobile: Urgent Help Screen",
+                        desc: "Guide requests urgent support or feature highlight from admin.",
+                        requestParams: null,
+                        requestBody: "{\n  \"subject\": \"Emergency\",\n  \"message\": \"I need immediate help...\"\n}",
+                        response: "{\n  \"id\": 99, \"status\": \"Pending\"\n}"
+                    },
+                    {
+                        title: "List My Requests", method: "GET", url: "/api/tourguide/urgent-requests/my-requests",
+                        location: "Mobile: Help History Screen",
+                        desc: "Fetch all previous urgent tickets sent to admin.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "[\n  { \"id\": 99, \"status\": \"Resolved\", \"adminReply\": \"...\" }\n]"
+                    }
+                ]
+            },
+            {
+                category: "5. Financials & Withdraw",
+                endpoints: [
+                    {
+                        title: "Request Payout", method: "POST", url: "/api/tourguide/profile/withdraw",
+                        location: "Mobile: Earnings Screen -> Withdraw",
+                        desc: "Guide requests to transfer their wallet balance to bank/Vodafone Cash.",
+                        requestParams: null,
+                        requestBody: "{\n  \"amount\": 500,\n  \"paymentMethod\": \"Bank\",\n  \"paymentDetails\": \"A/C: 1234567\"\n}",
+                        response: "{\n  \"id\": 777, \"status\": \"Pending\"\n}"
+                    },
+                    {
+                        title: "Withdrawal History", method: "GET", url: "/api/tourguide/profile/withdraw",
+                        location: "Mobile: Withdrawal Activity",
+                        desc: "History of all payouts requested and their statuses.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "[\n  { \"amount\": 500, \"status\": \"Completed\" }\n]"
+                    }
+                ]
+            },
+            {
+                category: "6. Admin: Guide Control",
+                endpoints: [
+                    {
+                        title: "List Apps", method: "GET", url: "/api/tourguide/admin/applications",
+                        location: "Web: Admin -> Guide Applications",
+                        desc: "Admin views users waiting to be promoted to Guide role.",
+                        requestParams: null,
+                        requestBody: null,
+                        response: "[\n  { \"id\": 10, \"fullName\": \"Ahmed\", \"licensePhoto\": \"...\" }\n]"
+                    },
+                    {
+                        title: "Approve App", method: "POST", url: "/api/tourguide/admin/applications/{id}/approve",
+                        location: "Web: Application Details page",
+                        desc: "Verifies guide and upgrades user role to 'Tourguide'.",
+                        requestParams: [{ name: "id", type: "Path", desc: "App ID" }],
+                        requestBody: null,
+                        response: "{\n  \"message\": \"User is now a Tourguide\"\n}"
+                    },
+                    {
+                        title: "Reject App", method: "POST", url: "/api/tourguide/admin/applications/{id}/reject",
+                        location: "Web: Application Details page",
+                        desc: "Denies application with a specific reason.",
+                        requestParams: [{ name: "id", type: "Path", desc: "App ID" }],
+                        requestBody: "{\n  \"reason\": \"Photos are blurred\"\n}",
+                        response: "{\n  \"message\": \"Rejected\"\n}"
+                    },
+                    {
+                        title: "Ban Guide", method: "POST", url: "/api/tourguide/admin/{id}/ban",
+                        location: "Web: Guide Management table",
+                        desc: "Immediately deactivates a guide profile and their tours.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Guide ID" }],
+                        requestBody: null,
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            },
+            {
+                category: "7. Admin: Operations",
+                endpoints: [
+                    {
+                        title: "Process Payout", method: "POST", url: "/api/tourguide/admin/withdraw-requests/{id}/process",
+                        location: "Web: Admin -> Financials",
+                        desc: "Final step for admin to mark a bank transfer as completed.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Request ID" }],
+                        requestBody: "{\n  \"status\": \"Approved|Rejected\",\n  \"adminNote\": \"Transferred successfully\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    },
+                    {
+                        title: "Process Urgent", method: "POST", url: "/api/tourguide/urgent-requests/admin/process/{id}",
+                        location: "Web: Admin -> Urgent Tickets",
+                        desc: "Admin replies to or solves a guide's urgent request.",
+                        requestParams: [{ name: "id", type: "Path", desc: "Request ID" }],
+                        requestBody: "{\n  \"status\": \"InProcess|Resolved\",\n  \"adminReply\": \"We are looking into it\"\n}",
+                        response: "{\n  \"success\": true\n}"
+                    }
+                ]
+            }
+        ];
+
+        // --- Render Sidebar ---
+        const sidebar = document.getElementById('endpoints-list');
+        let html = '';
+        
+        apiData.forEach((cat, catIdx) => {
+            html += `<div class="category-title">${cat.category}</div>`;
+            cat.endpoints.forEach((ep, epIdx) => {
+                html += `
+                    <div class="endpoint-link" onclick="showDetails(${catIdx}, ${epIdx}, this)">
+                        <span class="method-badge method-${ep.method}">${ep.method}</span>
+                        <span style="font-size: 0.9rem;">${ep.title}</span>
+                    </div>
+                `;
+            });
+        });
+        sidebar.innerHTML = html;
+
+        // --- Render Content ---
+        function showDetails(catIdx, epIdx, el) {
+            document.querySelectorAll('.endpoint-link').forEach(link => link.classList.remove('active'));
+            if(el) el.classList.add('active');
+
+            const ep = apiData[catIdx].endpoints[epIdx];
+            const content = document.getElementById('mainContent');
+
+            let paramsHtml = '';
+            if (ep.requestParams && ep.requestParams.length > 0) {
+                paramsHtml = `
+                    <h3><span style="color:#93c5fd; font-weight:600;"><i class="fas fa-filter"></i> Parameters</span></h3>
+                    <table>
+                        <thead>
+                            <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            ${ep.requestParams.map(p => `<tr><td><code>${p.name}</code></td><td>${p.type}</td><td>${p.desc}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            let bodyHtml = '';
+            if (ep.requestBody) {
+                bodyHtml = `
+                    <h3><span class="hl-req"><i class="fas fa-file-export"></i> Request Body</span></h3>
+                    <pre><code>${ep.requestBody}</code></pre>
+                `;
+            }
+
+            content.innerHTML = `
+                <div class="card">
+                    <h2 style="margin-bottom:20px">${ep.title}</h2>
+                    
+                    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 30px;">
+                        <p style="margin-bottom: 15px; font-size: 1.1rem; line-height: 1.6;">
+                            <strong style="color: var(--primary); display: inline-block; min-width: 110px;"><i class="fas fa-bullseye"></i> Goal:</strong> 
+                            <span style="color: var(--text-main);">${ep.desc}</span>
+                        </p>
+                        <p style="margin: 0; font-size: 1.1rem;">
+                            <strong style="color: var(--primary); display: inline-block; min-width: 110px;"><i class="fas fa-map-marker-alt"></i> Location:</strong> 
+                            <span style="color: #cbd5e1;">${ep.location}</span>
+                        </p>
+                    </div>
+
+                    <div class="url-box">
+                        <span class="method-badge method-${ep.method}" style="font-size: 0.95rem; padding: 6px 12px; margin-right: 15px;">${ep.method}</span>
+                        <span style="color: #a5b4fc; font-weight: 600;">https://travi...</span>${ep.url}
+                    </div>
+
+                    ${paramsHtml}
+                    ${bodyHtml}
+
+                    <h3><span class="hl-res"><i class="fas fa-file-import"></i> Response</span></h3>
+                    <pre><code>${ep.response}</code></pre>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

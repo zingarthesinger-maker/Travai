@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Controllers\\TourGuide",
+    "\\Services",
+    "\\Services\\TourGuide"
+  ],
+  "SelectedNode": "\\Services\\TourGuide\\TourService.cs",
+  "PreviewInSolutionExplorer": false
+}
